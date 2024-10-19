@@ -48,6 +48,7 @@ TOKEN = os.getenv('TELEGRAM_TOKEN')
 CHATID = os.getenv('CHAT_ID')
 
 def sendMessage(message):
+    print("\n\nTELEGRAM IN\n\n")
     async def send_message(message):
         bot = Bot(TOKEN)
         await bot.send_message(CHATID, message)

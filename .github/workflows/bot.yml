@@ -32,7 +32,8 @@ jobs:
 
       - name: Run Selenium script
         run: |
-          python main.py
+          output=$(python main.py)
+          echo "$output"
         env:
           BOT_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
