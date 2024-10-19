@@ -27,9 +27,6 @@ class TokenAuthSpider(scrapy.Spider):
 
         user = os.getenv('USER')
         password = os.getenv('PASSWORD')
-        
-        print("\n\n\n", user, password, "\n\n\n")
-        
         username_input.send_keys(user)
         password_input.send_keys(password)
         login_button.click()
