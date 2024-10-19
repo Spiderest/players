@@ -35,7 +35,7 @@ jobs:
           output=$(python main.py)
           echo "$output"
         env:
-          BOT_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          CHAT_ID: ${{ secrets.CHAT_ID }}
+          TG: ${{ secrets.TG }}
+          CHAT: ${{ secrets.CHAT }}
           PASSWORD: ${{ secrets.PASSWORD }}
           USER: ${{ secrets.USER }}
