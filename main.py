@@ -46,13 +46,11 @@ def searchPlayers(onlinePlayers):
     return message
 
 #------------------------------------------------------------------------------------
-TOKEN = str(os.getenv('TELEGRAM_TOKEN')).strip()
-CHATID = str(os.getenv('CHAT_ID')).strip()
 
 def sendMessage(message):
     async def send_message(message):
-        bot = Bot(TOKEN)
-        await bot.send_message(CHATID, message)
+        bot = Bot(os.getenv('TELEGRAM_TOKEN'))
+        await bot.send_message(os.getenv('CHAT_ID'), message)
     asyncio.run(send_message(message))
 
 if __name__ == '__main__':
