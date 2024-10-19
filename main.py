@@ -56,15 +56,15 @@ def sendMessage(message):
     asyncio.run(send_message(message))
 
 if __name__ == '__main__':
-    try:
-        startSpider()
-        onlinePlayers = readHtml()
-        message = searchPlayers(onlinePlayers)
-        if message:
-            sendMessage(message)
-        else:
-            print("No message")
-    except Exception as e:
-        sendMessage(f"Failed by: {e}")
-    finally:
-        sys.exit(0)
+#    try:
+    startSpider()
+    onlinePlayers = readHtml()
+    message = searchPlayers(onlinePlayers)
+    if message:
+        sendMessage(message)
+    else:
+        print("No message")
+    # except Exception as e:
+    #     sendMessage(f"Failed by: {e}")
+    # finally:
+    #     sys.exit(0)
