@@ -46,8 +46,8 @@ def searchPlayers(onlinePlayers):
     return message
 
 #------------------------------------------------------------------------------------
-TOKEN = os.getenv('TELEGRAM_TOKEN')
-CHATID = os.getenv('CHAT_ID')
+TOKEN = os.getenv('TELEGRAM_TOKEN').strip()
+CHATID = os.getenv('CHAT_ID').strip()
 
 def sendMessage(message):
     async def send_message(message):
