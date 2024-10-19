@@ -1,0 +1,15 @@
+name: Run test
+
+on:
+  push:
+  schedule:
+    - cron: '* * * * *'
+
+jobs:
+  do-nothing:
+    runs-on: ubuntu-latest
+  
+  steps:
+      - name: Do Nothing
+        run: |
+          echo "This is a test"
