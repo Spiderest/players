@@ -49,7 +49,7 @@ def searchPlayers(onlinePlayers):
 
 def sendMessage(message):
     async def send_message(message):
-        bot = Bot(os.getenv('TELEGRAM_TOKEN'))
+        bot = Bot(str(os.getenv('TELEGRAM_TOKEN')))
         await bot.send_message(os.getenv('CHAT_ID'), message)
     asyncio.run(send_message(message))
 
