@@ -49,8 +49,8 @@ def searchPlayers(onlinePlayers):
 
 def sendMessage(message):
     async def send_message(message):
-        bot = Bot("7858043644:AAE1A9mfn88fhqTTcRgD9yWyOeh2RXAMRZU")
-        await bot.send_message(os.getenv('CHAT_ID'), message)
+        bot = Bot(os.getenv('TG'))
+        await bot.send_message(os.getenv('CHAT'), message)
     asyncio.run(send_message(message))
 
 if __name__ == '__main__':
