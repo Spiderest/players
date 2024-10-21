@@ -27,7 +27,7 @@ def readHtml():
 
 def searchPlayers(onlinePlayers):
     target = ['paolino885', 'jefsimons', 'ben201', 'dbn3', 'hehehe16', 'uberpapst', 
-                'asther01', 'psico', 'quartlast', 'zenomullen']
+                'asther01', 'psico', 'quartlast', 'zenomullen', 'charlie74']
 
     subPlayers = []
     for nickname in onlinePlayers:
