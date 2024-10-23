@@ -1,1 +1,1 @@
-# this repo does not do nothing
+# this repo does not do anything
