@@ -33,13 +33,12 @@ def searchPlayers(onlinePlayers):
     for nickname in onlinePlayers:
         if nickname in target:
             subPlayers.append(nickname)
-    
+
+    message = None
     if subPlayers:
         message = "Online Players:\n"
         for i, nickname in enumerate(subPlayers):
             message += f"{i+1}. {nickname}\n"
-    else:
-        message = "No online Players"
         
     print(f"\n\nOUTPUT:\n{message}\n\n")
         
