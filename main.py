@@ -26,7 +26,7 @@ def readHtml():
     return [attribute['data-player-nickname'].lower() for attribute in div]
 
 def searchPlayers(onlinePlayers):
-    target = ['paolino885', 'jefsimons', 'ben201', 'dbn3', 'hehehe16', 'uberpapst', 'aster02',
+    target = ['paolino885', 'jefsimons', 'ben201', 'dbn3', 'hehehe16', 'uberpapst', 'aster02', 'txxxm15',
                 'psico', 'quartlast', 'zenomullen', 'charlie74', 'sam987654', 'asher14', 'random146435']
 
     subPlayers = []
