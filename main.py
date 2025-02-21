@@ -36,7 +36,7 @@ def searchPlayers(onlinePlayers):
         if nickname in target:
             subPlayers.append(nickname)
 
-    message = None
+    message = ""
     if subPlayers:
         message = "Online Players:\n"
         for i, nickname in enumerate(subPlayers):
@@ -55,9 +55,10 @@ def sendMessage(message):
 def process():
     startSpider()
     onlinePlayers = playerParser(STARTLIST, ENDLIST)
+    message = searchPlayers(onlinePlayers)
     friends = playerParser(STARTFRIEND, ENDFRIEND)
-    message = f"{searchPlayers(onlinePlayers)}\nFriends:\n{friends}"
-    
+    if friends:
+        message += f"\nFriends:\n{friends}"
     if message:
         sendMessage(message)
     
