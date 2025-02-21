@@ -59,8 +59,11 @@ def process():
     friends = playerParser(STARTFRIEND, ENDFRIEND)
     if friends:
         message += f"\nFriends:\n{friends}"
+    
     if message:
         sendMessage(message)
+    else:
+        sendMessage("No players now")
     
 if __name__ == '__main__':
     try:
