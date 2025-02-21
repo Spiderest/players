@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-import scrapy, sys, time, gc, os
+import scrapy, sys, time, os
 
 class TokenAuthSpider(scrapy.Spider):
     name = 'token_auth_spider'
@@ -10,11 +10,9 @@ class TokenAuthSpider(scrapy.Spider):
     def __init__(self, *args, **kwargs):
         super(TokenAuthSpider, self).__init__(*args, **kwargs)
         options = Options()
-        options.headless = False
-        options = Options()
-        options.add_argument("--headless")  # Aggiungi questa riga
-        options.add_argument("--no-sandbox")  # Necessario in alcuni ambienti
-        options.add_argument("--disable-dev-shm-usage")  # Necessario in alcuni ambienti
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
 
         self.driver = webdriver.Chrome(service=Service(), options=options)
 
@@ -47,11 +45,9 @@ class TokenAuthSpider(scrapy.Spider):
             with open(path, 'w', encoding='utf-8') as f:
                 f.write(page_html)
         except Exception:
-            gc.collect()
             self.close("")
             sys.exit(0)
         finally:
-            gc.collect()
             self.close("")
 
     def close(self, reason):
