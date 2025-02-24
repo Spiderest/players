@@ -62,8 +62,6 @@ def process():
     
     if message:
         sendMessage(message)
-    else:
-        sendMessage("No players now")
     
 if __name__ == '__main__':
     try:
