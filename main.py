@@ -28,8 +28,7 @@ def playerParser(hList, tList):
     return [attribute['data-player-nickname'].lower() for attribute in div]
 
 def searchPlayers(onlinePlayers):
-    target = ['paolino885', 'jefsimons', 'ben201', 'dbn3', 'hehehe16', 'uberpapst', 'aster02', 'txxxm15',
-                'psico', 'quartlast', 'charlie74', 'sam987654', 'asher14', 'random146435']
+    target = ['hehehe16', 'uberpapst', 'aster02', 'psico', 'quartlast', 'asher14', 'random146435']
 
     subPlayers = []
     for nickname in onlinePlayers:
