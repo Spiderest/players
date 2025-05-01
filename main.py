@@ -56,8 +56,3 @@ if __name__ == '__main__':
         sendMessage(f"Failed by: {e}")
     finally:
         sys.exit(0)
-
-    except Exception as e:
-        sendMessage(f"Failed by: {e}")
-    finally:
-        sys.exit(0)
