@@ -5,11 +5,9 @@ from scrapy.crawler import CrawlerProcess
 from pleazgg.spiders.spider import TokenAuthSpider
 
 #------------------------------------------------------------------------------------
-STARTLIST = '<div class="w-100 m-0 mt-2" data-chat-target="playersList">'
-ENDLIST = '<div style="display: none;" data-chat-target="playersBlocksListArea">'
-STARTFRIEND = '<div class="w-100 m-0 mt-2" data-chat-target="playersFriendsList">'
-ENDFRIEND = '<div class="w-100 m-0 mt-2" data-chat-target="playersList">'
 SPIDER = "scrapy crawl token_auth_spider"
+STARTLIST = '<!-- FRIENDS -->'
+ENDLIST = '<!-- ONLINE -->'
 
 def startSpider():
     process = CrawlerProcess()
@@ -24,43 +22,29 @@ def playerParser(hList, tList):
         page = page.split(tList)[0]
 
     soup = BeautifulSoup(page, 'html.parser')
-    div = soup.find_all('div', attrs={'data-player-nickname': True})
-    return [attribute['data-player-nickname'].lower() for attribute in div]
-
-def searchPlayers(onlinePlayers):
-    target = ['hehehe16', 'uberpapst', 'aster02', 'psico', 'quartlast', 'asher14', 'random146435']
-
-    subPlayers = []
-    for nickname in onlinePlayers:
-        if nickname in target:
-            subPlayers.append(nickname)
-
-    message = ""
-    if subPlayers:
-        message = "Online Players:\n"
-        for i, nickname in enumerate(subPlayers):
-            message += f"{i+1}. {nickname}\n"
-        
-    return message
+    div = soup.find_all('button', attrs={'data-chat-nickname-param': True})
+    return [attribute['data-chat-nickname-param'].lower() for attribute in div]
 
 #------------------------------------------------------------------------------------
+def str(onlinePlayers):
+    message = "Online Players:\n"
+    for i, player in enumerate(onlinePlayers):
+        message += f"{i + 1}. {player}\n"
+    print(message)
+    return message
 
 def sendMessage(message):
     async def send_message(message):
         bot = Bot(os.getenv('TG'))
         await bot.send_message(os.getenv('CHAT'), message)
     asyncio.run(send_message(message))
-
+    
+#------------------------------------------------------------------------------------    
 def process():
     startSpider()
-    onlinePlayers = playerParser(STARTLIST, ENDLIST)
-    message = searchPlayers(onlinePlayers)
-    friends = playerParser(STARTFRIEND, ENDFRIEND)
+    friends = playerParser(STARTLIST, ENDLIST)
     if friends:
-        message += f"\nFriends:\n{friends}"
-    
-    if message:
-        sendMessage(message)
+        sendMessage(str(friends))
     
 if __name__ == '__main__':
     try:
@@ -68,6 +52,11 @@ if __name__ == '__main__':
     except FileNotFoundError:
         sendMessage("Restarting process")
         process()
+    except Exception as e:
+        sendMessage(f"Failed by: {e}")
+    finally:
+        sys.exit(0)
+
     except Exception as e:
         sendMessage(f"Failed by: {e}")
     finally:
