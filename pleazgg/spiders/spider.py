@@ -18,7 +18,6 @@ class TokenAuthSpider(scrapy.Spider):
 
     def start_requests(self):
         self.driver.get("https://pleazgg.com/login")
-
         username_input = self.driver.find_element(By.ID, "username")
         password_input = self.driver.find_element(By.ID, "password")
         login_button = self.driver.find_element(By.CSS_SELECTOR, "button[type='submit']")
@@ -28,15 +27,15 @@ class TokenAuthSpider(scrapy.Spider):
         username_input.send_keys(user)
         password_input.send_keys(password)
         login_button.click()
-        time.sleep(3)
-        
+        time.sleep(5)
+
         self.driver.get("https://pleazgg.com/lobby")
-        
-        chat_button = self.driver.find_element(By.CSS_SELECTOR, "button[data-bs-toggle='offcanvas']")
-        chat_button.click()
-        time.sleep(15)
-        
+        chat_container = self.driver.find_element(By.CLASS_NAME, "fixed-bottom")
+        chat_container.click()
+        time.sleep(5)
+
         self.parse_chat("")
+        return []
 
     def parse_chat(self, response):
         try:
@@ -44,11 +43,13 @@ class TokenAuthSpider(scrapy.Spider):
             page_html = self.driver.page_source
             with open(path, 'w', encoding='utf-8') as f:
                 f.write(page_html)
-        except Exception:
-            self.close("")
-            sys.exit(0)
+        except Exception as e:
+            self.driver.quit()
+            self.close("ERROR")
+            sys.exit(0)   
         finally:
-            self.close("")
+            self.driver.quit()
+            self.close("SHUTDOWN")
 
     def close(self, reason):
-        self.driver.quit()
+        print(reason)
