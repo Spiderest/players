@@ -25,7 +25,7 @@ def playerParser(hList, tList):
     div = soup.find_all('button', attrs={'data-chat-nickname-param': True})
     return [attribute['data-chat-nickname-param'].lower() for attribute in div]
 
-#------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------
 def str(onlinePlayers):
     message = "Online Players:\n"
     for i, player in enumerate(onlinePlayers):
@@ -39,7 +39,7 @@ def sendMessage(message):
         await bot.send_message(os.getenv('CHAT'), message)
     asyncio.run(send_message(message))
     
-#------------------------------------------------------------------------------------    
+#-----------------------------------------------------------------------------------    
 def process():
     startSpider()
     friends = playerParser(STARTLIST, ENDLIST)
