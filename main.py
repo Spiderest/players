@@ -7,7 +7,7 @@ from pleazgg.spiders.spider import TokenAuthSpider
 #-----------------------------------------------------------------------------------
 SPIDER = "scrapy crawl token_auth_spider"
 STARTLIST = '<!-- FRIENDS -->'
-ENDLIST = '<!-- ONLINE -->'
+ENDLIST = '<!-- ONLINE LIST-->'
 
 def startSpider():
     process = CrawlerProcess()
