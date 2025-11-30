@@ -22,8 +22,11 @@ def playerParser(hList, tList):
         page = page.split(tList)[0]
 
     soup = BeautifulSoup(page, 'html.parser')
-    div = soup.find_all('button', attrs={'data-chat-nickname-param': True})
-    return [attribute['data-chat-nickname-param'].lower() for attribute in div]
+    # div = soup.find_all('button', attrs={'data-chat-nickname-param': True})
+    # return [attribute['data-chat-nickname-param'].lower() for attribute in div]
+    buttons = soup.find_all('button', attrs={'data-chat-nickname-param': True})
+    nicknames = [btn['data-chat-nickname-param'].lower() for btn in buttons]
+    return nicknames
 
 #----------------------------------------------------------------------------------
 def str(onlinePlayers):
