@@ -10,6 +10,10 @@ import time, os
 
 def startSpider():
     options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+
     driver = webdriver.Chrome(service=Service(), options=options)
 
     try:
