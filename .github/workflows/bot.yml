@@ -1,0 +1,41 @@
+name: Run-bot 
+
+on:
+  push:
+   schedule:
+    - cron: '*/10 * * * *'
+
+jobs:
+  run-selenium:
+    runs-on: ubuntu-latest
+
+    services:
+      chrome:
+        image: selenium/standalone-chrome:latest
+        ports:
+          - 4444:4444
+        options: >-
+          --shm-size=2g
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Selenium script
+        run: |
+          output=$(python main.py)
+          echo "$output"
+        env:
+          TG: ${{ secrets.TG }}
+          CHAT: ${{ secrets.CHAT }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          USER: ${{ secrets.USER }}
